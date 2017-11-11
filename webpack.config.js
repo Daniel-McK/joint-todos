@@ -12,6 +12,14 @@ var config = {
   module: {
     loaders: [
       {
+        test: /\.tsx$/,
+        enforce: "pre",
+        loader: "tslint-loader",
+        options: { 
+          configFile: "tslint.json"
+        }
+      },
+      {
         test: /\.tsx?$/,
         loader: "ts-loader",
         exclude: /node_modules/
