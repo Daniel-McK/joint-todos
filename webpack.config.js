@@ -12,6 +12,10 @@ var config = {
   module: {
     loaders: [
       {
+        test: /\.s?css$/,
+        loader: ["style-loader", "css-loader", "sass-loader"]
+      },
+      {
         test: /\.tsx$/,
         enforce: "pre",
         loader: "tslint-loader",

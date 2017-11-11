@@ -7,6 +7,8 @@ import Add from './components/add/Add';
 import Home from './components/home/Home';
 import NotFound from './components/not-found/NotFound';
 
+import './styles/App.scss';
+
 class App extends React.Component<{}, {}> {
   public render() {
     return (
