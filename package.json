@@ -1,0 +1,22 @@
+{
+  "name": "joint-todos",
+  "version": "1.0.0",
+  "description": "Testing out new libraries while building a collaborative To-Do site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Daniel-McK/joint-todos.git"
+  },
+  "author": "Daniel McKittrick",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Daniel-McK/joint-todos/issues"
+  },
+  "homepage": "https://github.com/Daniel-McK/joint-todos#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
