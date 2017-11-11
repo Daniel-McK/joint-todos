@@ -1,18 +1,18 @@
 var path = require("path");
 
 var config = {
-  entry: ["./app/client/index.ts"],
+  entry: ["./app/client/index.tsx"],
   output: {
     path: path.resolve(__dirname, "build"),
     filename: "bundle.js"
   },
   resolve: {
-    extensions: [".ts"]
+    extensions: [".ts", ".tsx", ".js"]
   },
   module: {
     loaders: [
       {
-        test: /\.ts$/,
+        test: /\.tsx?$/,
         loader: "ts-loader",
         exclude: /node_modules/
       }
