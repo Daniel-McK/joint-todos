@@ -1,12 +1,24 @@
 import * as React from 'react';
-import Button from 'material-ui/RaisedButton'
+import { Link, Route, Switch } from 'react-router-dom';
+import Button from 'material-ui/RaisedButton';
+
+import Add from './components/add/Add';
+import Home from './components/home/Home';
+import NotFound from './components/not-found/NotFound';
 
 class App extends React.Component<{}, {}> {
   public render() {
     return (
       <div>
         <h1>joint-todos</h1>
-        <Button>Test button</Button>
+        <Link to="/">Home</Link>&nbsp;
+        <Link to="/add">Add</Link>&nbsp;
+        <Link to="/does-not-match">Random</Link>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/add" component={Add} />
+          <Route component={NotFound} />
+        </Switch>
       </div>    
     );
   }
