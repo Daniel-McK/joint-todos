@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import App from './App';
+import App from './containers/app/App';
 import rootReducer from './reducers/root';
 
 const store = createStore(rootReducer, applyMiddleware(logger));
