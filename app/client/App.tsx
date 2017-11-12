@@ -4,7 +4,7 @@ import Button from 'material-ui/RaisedButton';
 
 import Header from './components/header/Header';
 import Add from './components/add/Add';
-import Home from './components/home/Home';
+import Home from './containers/home/Home';
 import NotFound from './components/not-found/NotFound';
 
 import './styles/App.scss';
