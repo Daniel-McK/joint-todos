@@ -2,8 +2,9 @@ import { all, call, put, takeLatest } from 'redux-saga/effects'
 import axios from 'axios';
 
 import * as API from '../api/index';
-import { fetchLists } from '../actions/index';
+import { fetchLists, login } from '../actions/index';
 import AsyncActionCreator from '../models/asyncActionCreator';
+import Action from '../models/action';
 
 function* fetch(boundFunction: () => any, actionCreator: AsyncActionCreator){
   try {
@@ -14,12 +15,18 @@ function* fetch(boundFunction: () => any, actionCreator: AsyncActionCreator){
   }
 }
 
-function* handleFetchLists(action: any): any {
+function* handleFetchLists(action: Action) {
   yield fetch(API.fetchLists, fetchLists);
 }
 
-export default function *rootSaga() {
+function* handleLogin(action: Action) {
+  const boundLogin = API.login.bind(null, action.payload.email, action.payload.password);
+  yield fetch(boundLogin, login);
+}
+
+export default function* rootSaga() {
   yield [
-    takeLatest(fetchLists.requestType, handleFetchLists)
+    takeLatest(fetchLists.requestType, handleFetchLists),
+    takeLatest(login.requestType, handleLogin)
   ];
 }

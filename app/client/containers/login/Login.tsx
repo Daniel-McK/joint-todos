@@ -4,7 +4,7 @@ import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
-import { fakeLogin } from '../../actions/index';
+import { login } from '../../actions/index';
 
 import './styles/Login.scss';
 
@@ -33,7 +33,7 @@ function mapStateToProps(state: any) {
 
 function mapDispatchToProps(dispatch: (action: any) => void) {
   return {
-    login: () => dispatch(fakeLogin.create())
+    login: () => dispatch(login.request({email: 'testemail', password: 'testpassword'}))
   };
 }
 
