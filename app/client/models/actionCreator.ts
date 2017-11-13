@@ -1,3 +1,5 @@
+import Action from './action';
+
 export default class ActionCreator {
   type: string;
 
@@ -5,7 +7,7 @@ export default class ActionCreator {
     this.type = type;
   }
 
-  create(payload?: any) {
+  create(payload?: any): Action {
     return {
       type: this.type,
       payload

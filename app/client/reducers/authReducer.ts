@@ -5,7 +5,7 @@ const initialState = {
   status: AuthorizationStatus.PreLogin
 };
 
-export default function authReducer(state: any = initialState, action: any) {
+export function auth(state: any = initialState, action: any) {
   switch(action.type) {
     case fakeLogin.type:
       return {

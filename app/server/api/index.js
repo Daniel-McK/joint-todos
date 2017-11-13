@@ -1,10 +1,9 @@
 const express = require('express');
 
+const listRouter = require('./lists');
+
 const apiRouter = new express.Router();
 
-apiRouter.route('/test')
-  .get((req, res) => {
-    res.json({example: 'text'});
-  });
+apiRouter.use('/lists', listRouter);
 
 module.exports = apiRouter;
