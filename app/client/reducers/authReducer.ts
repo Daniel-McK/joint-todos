@@ -1,4 +1,4 @@
-import { fakeLogin, loadUser, login, setUnauthorized } from '../actions/index';
+import { fakeLogin, loadUser, login, logout, setUnauthorized } from '../actions/index';
 import { AuthorizationStatus } from '../models/auth';
 
 const initialState = {
@@ -10,6 +10,7 @@ export function auth(state: any = initialState, action: any) {
     case login.failureType:
     case setUnauthorized.type:
     case loadUser.failureType:
+    case logout.type:
       return {
         ...state,
         status: AuthorizationStatus.NotAuthorized
