@@ -11,6 +11,7 @@ import { logout } from '../../actions/index';
 import { AuthorizationStatus } from '../../models/auth';
 import Action from '../../models/action';
 import State from '../../models/state';
+import { LOGGED_OUT_TOKEN } from '../../helpers/token';
 
 interface HomeProps {
   status: AuthorizationStatus;
@@ -38,7 +39,7 @@ class Home extends React.Component<HomeProps, any> {
   }
 
   private onLogoutClick = () => {
-    localStorage.remove('token');
+    localStorage.set('token', LOGGED_OUT_TOKEN);
     this.props.logoutUser();
   }
 }

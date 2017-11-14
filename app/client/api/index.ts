@@ -1,7 +1,7 @@
 import axios from 'axios';
 const localStorage = require('local-storage');
 
-import TokenListener from '../helpers/tokenListener';
+import { TokenListener } from '../helpers/token';
 
 export async function fetchLists() {
   return await axios.get(`${API}/lists`);
