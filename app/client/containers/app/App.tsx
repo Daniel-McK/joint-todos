@@ -12,6 +12,7 @@ import Login from '../login/Login';
 import NotFound from '../../components/not-found/NotFound';
 import {  AuthorizationStatus } from '../../models/auth';
 import Action from '../../models/action';
+import TokenListener from '../../helpers/tokenListener';
 
 import './styles/App.scss';
 
@@ -26,6 +27,7 @@ class App extends React.Component<AppProps, {}> {
   constructor(props: AppProps) {
     super(props);
     const token = localStorage.get('token');
+    TokenListener.token(token);
     if (token) {
       this.props.loadUserFromToken(token);
     } else {
