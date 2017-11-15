@@ -7,6 +7,7 @@ const localStorage = require('local-storage');
 import { loadUser, setUnauthorized } from '../../actions/index';
 import Header from '../../components/header/Header';
 import Add from '../../components/add/Add';
+import AppLoader from '../../components/app-loader/AppLoader';
 import Home from '../home/Home';
 import Login from '../login/Login';
 import NotFound from '../../components/not-found/NotFound';
@@ -22,10 +23,17 @@ interface AppProps {
   unauthorize: VoidFunction;
 }
 
-class App extends React.Component<AppProps, {}> {
+interface AppState {
+  initialLoad: boolean;
+}
+
+class App extends React.Component<AppProps, AppState> {
 
   constructor(props: AppProps) {
     super(props);
+    this.state = {
+      initialLoad: true
+    };
     const token = localStorage.get('token');
     TokenListener.token(token);
     if (isValidToken(token)) {
@@ -33,11 +41,17 @@ class App extends React.Component<AppProps, {}> {
     } else {
       this.props.unauthorize()
     }
+    setTimeout(this.hideLoader, 500);
   }
 
   public render() {
     const { status } = this.props;
+    const { initialLoad } = this.state;
 
+    if (initialLoad || status === AuthorizationStatus.PreLogin) {
+      return <AppLoader />;
+    }
+    
     if (status !== AuthorizationStatus.Authorized) {
       return <Login />;
     }
@@ -55,6 +69,12 @@ class App extends React.Component<AppProps, {}> {
         </Switch>
       </div>    
     );
+  }
+
+  private hideLoader = () => {
+    this.setState({
+      initialLoad: false
+    });
   }
 }
 
