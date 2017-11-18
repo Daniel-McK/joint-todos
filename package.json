@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/Daniel-McK/joint-todos#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "mongoose": "^4.13.4"
   },
   "devDependencies": {
     "@types/material-ui": "^0.18.4",
