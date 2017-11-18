@@ -1,6 +1,7 @@
 import { ListState } from '../reducers/listsReducer';
+import { AuthState } from '../reducers/authReducer';
 
 export default interface State {
-  auth: any;
+  auth: AuthState;
   list: ListState;
 }

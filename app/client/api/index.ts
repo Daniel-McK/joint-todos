@@ -22,4 +22,4 @@ export async function loadUser(token: string) {
 }
 
 const API = '/api';
-const AUTH = '/AUTH';
+const AUTH = '/auth';

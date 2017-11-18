@@ -1,7 +1,6 @@
 import ActionCreator from '../models/actionCreator';
 import AsyncActionCreator from '../models/asyncActionCreator';
 
-export const fakeLogin = new ActionCreator('FAKE_LOGIN');
 export const setUnauthorized = new ActionCreator('SET_UNAUTHORIZED');
 export const logout = new ActionCreator('LOGOUT');
 
