@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { fetchLists } from '../../actions/index';
-import { AuthorizationStatus } from '../../models/auth';
+import { AuthorizationStatus, User } from '../../models/auth';
 import Action from '../../models/action';
 import List from '../../models/list';
 import State from '../../models/state';
@@ -10,6 +10,7 @@ import State from '../../models/state';
 interface HomeProps {
   lists: List[];
   getLists: VoidFunction;
+  user: User;
 }
 
 class Home extends React.Component<HomeProps, any> {
@@ -19,10 +20,11 @@ class Home extends React.Component<HomeProps, any> {
   }
 
   public render() {
+    const { lists, user } = this.props;
     return (
       <div>
-        <p>Home</p>
-        {this.props.lists.map((list) => <p key={list.id}>{list.name}</p>)}
+        <p>Home: Welcome, {user.firstName}</p>
+        {lists.map((list: List) => <p key={list.id}>{list.name}</p>)}
       </div>
     );
   }
@@ -30,8 +32,10 @@ class Home extends React.Component<HomeProps, any> {
 
 function mapStateToProps(state: State) {
   const { lists } = state.list;
+  const { user } = state.auth;
   return {
-    lists
+    lists,
+    user
   };
 }
 

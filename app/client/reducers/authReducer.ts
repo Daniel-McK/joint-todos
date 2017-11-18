@@ -1,9 +1,10 @@
 import { loadUser, login, logout, setUnauthorized } from '../actions/index';
-import { AuthorizationStatus } from '../models/auth';
+import { AuthorizationStatus, User } from '../models/auth';
 
 export interface AuthState {
   status: AuthorizationStatus;
   error?: string;
+  user?: User;
 }
 
 const initialState = {
@@ -15,7 +16,9 @@ export function auth(state: any = initialState, action: any) {
   switch (action.type) {
     case login.request:
       return {
-        error: null
+        error: null,
+        user: null,
+        status: AuthorizationStatus.Pending
       };
     case login.failureType:
     case setUnauthorized.type:
@@ -23,14 +26,16 @@ export function auth(state: any = initialState, action: any) {
     case logout.type:
       return {
         ...state,
-        status: AuthorizationStatus.NotAuthorized
-      }
+        status: AuthorizationStatus.NotAuthorized,
+        user: null
+      };
     case login.successType:
     case loadUser.successType:
       if (action.payload.success) {
         return {
           ...state,
-          status: AuthorizationStatus.Authorized
+          status: AuthorizationStatus.Authorized,
+          user: action.payload.user
         };
       } else {
         return {

@@ -27,15 +27,23 @@ authRouter.post('/login', (req, res) => {
 });
 
 authRouter.post('/token', (req, res) => {
-  res.json({
-    success: true,
-    token: 'token',
-    user: {
-      firstName: 'Daniel',
-      lastName: 'McKittrick',
-      isAdmin: true,
-      email: 'testemail@gmail.com'
+
+  var token = req.body.token;
+
+  if (!token) {
+    return res.send({
+      success: false,
+      message: 'No token provided'
+    });
+  }
+
+  jwt.verify(token, db.secret, function (err, decoded) {
+    if (err) {
+      res.json({ success: false, message: "Failed to authenticate token" });
+      return;
     }
+
+    res.json({ success: true, user: decoded });
   });
 });
 
