@@ -7,7 +7,7 @@ import HomeButton from '../../containers/home-button/HomeButton';
 class Header extends React.Component<{}, {}> {
   public render() {
     return (
-      <AppBar title="Title"
+      <AppBar title="Joint To-do Lists"
       iconElementLeft={<HomeButton />}
       iconElementRight={<UserMenu />}
         />

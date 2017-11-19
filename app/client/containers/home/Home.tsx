@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
+import ListCard from '../../components/cards/ListCard';
 import { fetchLists } from '../../actions/index';
 import { AuthorizationStatus, User } from '../../models/auth';
 import Action from '../../models/action';
@@ -26,11 +27,10 @@ class Home extends React.Component<HomeProps, any> {
   }
 
   public render() {
-    const { lists, user } = this.props;
+    const { lists } = this.props;
     return (
-      <div>
-        <p>Home: Welcome, {user.firstName}</p>
-        {lists.map((list: List) => <p key={list.id}>{list.name}</p>)}
+      <div className="home-wrapper">
+        {lists.map((list: List) => <ListCard list={list} key={list.id} />)}
         <FloatingActionButton className="add-list-button" onClick={this.onAddClick}>
           <ContentAdd />
         </FloatingActionButton>

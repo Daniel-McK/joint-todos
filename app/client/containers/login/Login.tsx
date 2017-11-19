@@ -18,7 +18,7 @@ interface LoginState {
   password: string;
 }
 
-class Login extends React.Component<LoginProps, any> {
+class Login extends React.Component<LoginProps, LoginState> {
 
   constructor(props: LoginProps) {
     super(props);
