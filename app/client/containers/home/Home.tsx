@@ -1,5 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import { fetchLists } from '../../actions/index';
 import { AuthorizationStatus, User } from '../../models/auth';
@@ -7,10 +10,13 @@ import Action from '../../models/action';
 import List from '../../models/list';
 import State from '../../models/state';
 
+import './styles/Home.scss';
+
 interface HomeProps {
   lists: List[];
   getLists: VoidFunction;
   user: User;
+  history?: any[];
 }
 
 class Home extends React.Component<HomeProps, any> {
@@ -25,8 +31,15 @@ class Home extends React.Component<HomeProps, any> {
       <div>
         <p>Home: Welcome, {user.firstName}</p>
         {lists.map((list: List) => <p key={list.id}>{list.name}</p>)}
+        <FloatingActionButton className="add-list-button" onClick={this.onAddClick}>
+          <ContentAdd />
+        </FloatingActionButton>
       </div>
     );
+  }
+
+  private onAddClick = () => {
+    this.props.history.push('/add-list');
   }
 }
 
@@ -45,4 +58,4 @@ function mapDispatchToProps(dispatch: (action: Action) => void) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));

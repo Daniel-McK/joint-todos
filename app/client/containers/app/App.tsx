@@ -17,6 +17,8 @@ import { isValidToken, TokenListener } from '../../helpers/token';
 
 import './styles/App.scss';
 
+const MIN_LOAD_TIME = 500;
+
 interface AppProps {
   status: AuthorizationStatus;
   loadUserFromToken: (token: string) => void;
@@ -41,7 +43,7 @@ class App extends React.Component<AppProps, AppState> {
     } else {
       this.props.unauthorize()
     }
-    setTimeout(this.hideLoader, 500);
+    setTimeout(this.hideLoader, MIN_LOAD_TIME);
   }
 
   public render() {
@@ -59,12 +61,9 @@ class App extends React.Component<AppProps, AppState> {
     return (
       <div>
         <Header />
-        <Link to="/">Home</Link>&nbsp;
-        <Link to="/add">Add</Link>&nbsp;
-        <Link to="/does-not-match">Random</Link>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/add" component={Add} />
+          <Route path="/add-list" component={Add} />
           <Route component={NotFound} />
         </Switch>
       </div>    

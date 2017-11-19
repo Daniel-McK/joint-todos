@@ -13,12 +13,12 @@ import Action from '../../models/action';
 import State from '../../models/state';
 import { LOGGED_OUT_TOKEN } from '../../helpers/token';
 
-interface HomeProps {
+interface UserMenuProps {
   status: AuthorizationStatus;
   logoutUser: VoidFunction;
 }
 
-class Home extends React.Component<HomeProps, any> {
+class UserMenu extends React.Component<UserMenuProps, any> {
 
   public render() {
     if (this.props.status !== AuthorizationStatus.Authorized) {
@@ -57,4 +57,4 @@ function mapDispatchToProps(dispatch: (action: Action) => void) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(UserMenu);
